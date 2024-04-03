@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">digital_detox_app</string>
+    <string name="start_detox_session">start detox</string>
+    <string name="view_leaderboard">Leaderboard</string>
+    <string name="view_analysis">Analysis</string>
+    <string name="set_goal">set goal</string>
+</resources>
