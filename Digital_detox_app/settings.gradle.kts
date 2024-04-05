@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Digital_detox_app"
+rootProject.name = "DigitalDetoxApp"
 include(":app")
