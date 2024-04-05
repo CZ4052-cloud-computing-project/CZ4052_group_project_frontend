@@ -4,4 +4,10 @@
     <string name="view_leaderboard">Leaderboard</string>
     <string name="view_analysis">Analysis</string>
     <string name="set_goal">set goal</string>
+    <string name="back_button">Back</string>
+    <string name="mainMenuButton">R.string.app_name</string>
+    <string name="startDetoxButton">R.string.start_detox_session</string>
+    <string name="viewLeaderboardButton">R.string.view_leaderboard</string>
+    <string name="viewAnalysisButton">R.string.view_analysis</string>
+    <string name="setGoalsButton">R.string.set_goal</string>
 </resources>
