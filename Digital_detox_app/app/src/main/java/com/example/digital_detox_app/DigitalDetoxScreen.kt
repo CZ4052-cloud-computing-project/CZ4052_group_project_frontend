@@ -69,6 +69,7 @@ fun DigitalDetoxBar (
 fun DigitalDetoxApp(
 //    viewModel: OrderViewModel = viewModel(),
     sessionButtonViewModel: SessionButtonViewModel = viewModel(),
+    timerViewModel: TimerViewModel = viewModel(),
     navController: NavHostController = rememberNavController(),
 ) {
     // Get current back stack entry
@@ -109,7 +110,8 @@ fun DigitalDetoxApp(
                     modifier = Modifier
                         .fillMaxSize()
                         .wrapContentSize(Alignment.Center),
-                    sessionButtonViewModel = sessionButtonViewModel
+                    sessionButtonViewModel = sessionButtonViewModel,
+                    timerViewModel = timerViewModel
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {
