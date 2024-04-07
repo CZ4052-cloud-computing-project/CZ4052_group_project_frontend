@@ -10,4 +10,6 @@
     <string name="viewLeaderboardButton">R.string.view_leaderboard</string>
     <string name="viewAnalysisButton">R.string.view_analysis</string>
     <string name="setGoalsButton">R.string.set_goal</string>
+    <string name="startTimerButton">Start Detox Session</string>
+    <string name="endTimerButton">End Detox Session</string>
 </resources>

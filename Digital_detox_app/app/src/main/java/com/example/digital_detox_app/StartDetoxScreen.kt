@@ -15,10 +15,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.digital_detox_app.R
 import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
 @Composable
@@ -26,8 +28,8 @@ fun StartDetoxScreen(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier,
 ) {
-    var buttonText by remember { mutableStateOf("Start Detox session") }
-    var toggleFlag = remember { mutableStateOf(false) }
+    var isTimerRunning by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
@@ -40,11 +42,11 @@ fun StartDetoxScreen(
         ) {
             Button(
                 onClick = {
-                    buttonText = if (buttonText == "Start Detox session") "End Detox Session" else "Start Detox session"
+                    isTimerRunning = !isTimerRunning
                 },
                 modifier = modifier.widthIn(min = 250.dp)
             ) {
-                Text(buttonText)
+                Text(text = if (isTimerRunning) stringResource(id = R.string.endTimerButton) else stringResource(id = R.string.startTimerButton))
             }
         }
     }
