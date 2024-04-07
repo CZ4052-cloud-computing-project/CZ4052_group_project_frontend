@@ -23,9 +23,9 @@ import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
 @Composable
 fun SetGoalScreen(
+    modifier: Modifier = Modifier,
     goalTimeViewModel: GoalTimeViewModel = viewModel(),
     navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
 ) {
     var hours: Long by remember { mutableLongStateOf(0) }
     var minutes: Long by remember { mutableLongStateOf(0) }
