@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -66,8 +67,9 @@ fun DigitalDetoxBar (
 
 @Composable
 fun DigitalDetoxApp(
-//    viewModel: ViewModel = viewModel(),
-    navController: NavHostController = rememberNavController()
+//    viewModel: OrderViewModel = viewModel(),
+    sessionButtonViewModel: SessionButtonViewModel = viewModel(),
+    navController: NavHostController = rememberNavController(),
 ) {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -106,7 +108,8 @@ fun DigitalDetoxApp(
                     navController = navController,
                     modifier = Modifier
                         .fillMaxSize()
-                        .wrapContentSize(Alignment.Center)
+                        .wrapContentSize(Alignment.Center),
+                    sessionButtonViewModel = sessionButtonViewModel
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {
