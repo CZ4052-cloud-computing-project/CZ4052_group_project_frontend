@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">digital_detox_app</string>
-    <string name="start_detox_session">start detox</string>
+    <string name="app_name">Digital Detox App</string>
+    <string name="start_detox_session">Start Detox</string>
     <string name="view_leaderboard">Leaderboard</string>
     <string name="view_analysis">Analysis</string>
-    <string name="set_goal">set goal</string>
+    <string name="set_goal">Set Goal</string>
     <string name="back_button">Back</string>
     <string name="mainMenuButton">R.string.app_name</string>
     <string name="startDetoxButton">R.string.start_detox_session</string>

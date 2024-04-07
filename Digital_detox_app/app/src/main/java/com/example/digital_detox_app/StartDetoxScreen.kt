@@ -29,10 +29,10 @@ import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
 @Composable
 fun StartDetoxScreen(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     sessionButtonViewModel: SessionButtonViewModel = viewModel(),
     timerViewModel: TimerViewModel = viewModel(),
-    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
@@ -103,3 +103,4 @@ fun StartDetoxScreenPreview() {
         }
     }
 }
+
