@@ -25,7 +25,6 @@ private val retrofit = Retrofit.Builder()
 interface DigitalDetoxApiService {
     @GET("default/leaderboard")
     suspend fun getLeaderBoardInfo(@Query("date") date: String): LeaderboardResponse
-//    suspend fun getLeaderBoardInfo(): String
 }
 
 /**
