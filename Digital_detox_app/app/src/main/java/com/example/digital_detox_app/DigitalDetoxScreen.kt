@@ -2,9 +2,9 @@ package com.example.digital_detox_app
 
 import AnalysisScreen
 import LeaderboardEntry
+import LeaderboardScreen
 import MainMenuScreen
 import StartDetoxScreen
-import LeaderboardScreen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -115,7 +115,6 @@ fun DigitalDetoxApp(
                 )
             }
             composable(route = DigitalDetoxScreen.RunningSession.name) {
-                // TODO: create Screen for RunningSession
                 StartDetoxScreen(
                     navController = navController,
                     modifier = Modifier
