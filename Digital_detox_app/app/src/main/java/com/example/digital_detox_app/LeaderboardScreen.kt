@@ -2,6 +2,7 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.digital_detox_app.LeaderBoardUiState
 import com.example.digital_detox_app.R
+import com.example.digital_detox_app.data.LeaderBoardEntry
+import com.example.digital_detox_app.data.LeaderBoardResponse
 import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
 @Composable
@@ -34,7 +37,7 @@ fun LeaderboardScreen(
 }
 
 @Composable
-fun ResultantScreen(leaderboard: String, modifier: Modifier) {
+fun ResultantScreen(leaderboard: LeaderBoardResponse, modifier: Modifier) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,37 +48,37 @@ fun ResultantScreen(leaderboard: String, modifier: Modifier) {
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(16.dp)
             )
-            Text(text = leaderboard)
-//            leaderboard.forEach { entry ->
-//                LeaderboardEntryItem(entry = entry)
-//            }
+//            Text(text = leaderboard)
+            leaderboard.leaderboard.forEach { entry ->
+                LeaderboardEntryItem(entry = entry)
+            }
         }
 }
 
-//@Composable
-//fun LeaderboardEntryItem(entry: LeaderBoardEntry) {
-//    Row(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(16.dp)
-//    ) {
-//        Text(
-//            text = entry.rank.toString(),
-//            style = MaterialTheme.typography.bodySmall,
-//            modifier = Modifier.weight(1f)
-//        )
-//        Text(
-//            text = entry.playerName,
-//            style = MaterialTheme.typography.bodySmall,
-//            modifier = Modifier.weight(1f)
-//        )
-//        Text(
-//            text = entry.score.toString(),
-//            style = MaterialTheme.typography.bodySmall,
-//            modifier = Modifier.weight(1f)
-//        )
-//    }
-//}
+@Composable
+fun LeaderboardEntryItem(entry: LeaderBoardEntry) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text(
+            text = entry.position.toString(),
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            text = entry.username,
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            text = entry.totalDurationOfSessions.toString(),
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
 
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {

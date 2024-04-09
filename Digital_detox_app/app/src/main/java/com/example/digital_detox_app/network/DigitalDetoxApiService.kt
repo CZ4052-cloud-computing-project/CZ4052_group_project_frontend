@@ -1,6 +1,6 @@
 package com.example.digital_detox_app.network
 
-import com.example.digital_detox_app.data.LeaderboardResponse
+import com.example.digital_detox_app.data.LeaderBoardResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
  */
 interface DigitalDetoxApiService {
     @GET("default/leaderboard")
-    suspend fun getLeaderBoardInfo(@Query("date") date: String): LeaderboardResponse
+    suspend fun getLeaderBoardInfo(@Query("date") date: String): LeaderBoardResponse
 }
 
 /**

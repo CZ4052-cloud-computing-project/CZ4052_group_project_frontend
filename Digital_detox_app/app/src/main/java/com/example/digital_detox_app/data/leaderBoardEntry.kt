@@ -7,7 +7,7 @@ data class LeaderBoardEntry (
     val totalDurationOfSessions: Int
 )
 
-data class LeaderboardResponse(
+data class LeaderBoardResponse(
     val date: String,
     val leaderboard: List<LeaderBoardEntry>
 )

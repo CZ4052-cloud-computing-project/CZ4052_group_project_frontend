@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.digital_detox_app.data.LeaderBoardResponse
 import com.example.digital_detox_app.network.DigitalDetoxApi
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -14,7 +15,7 @@ import java.time.format.DateTimeFormatter
 
 
 sealed interface LeaderBoardUiState {
-    data class Success(val leaderboardInfo: String) : LeaderBoardUiState
+    data class Success(val leaderboardInfo: LeaderBoardResponse) : LeaderBoardUiState
     object Error : LeaderBoardUiState
     object Loading : LeaderBoardUiState
 }
@@ -35,7 +36,7 @@ class LeaderBoardViewModel: ViewModel() {
                 val listResult = DigitalDetoxApi.retrofitService.getLeaderBoardInfo(date)
                 LeaderBoardUiState.Success(
 //                    "Success: ${listResult.size} entries retrieved"
-                    "Successful retrieval: ${listResult}"
+                    listResult
                 )
             } catch (e: IOException) {
                     LeaderBoardUiState.Error
