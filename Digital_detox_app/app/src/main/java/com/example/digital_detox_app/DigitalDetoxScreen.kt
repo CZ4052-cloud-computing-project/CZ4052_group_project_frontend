@@ -125,7 +125,11 @@ fun DigitalDetoxApp(
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {
-                LeaderboardScreen(sampleLeaderboard)
+                val leaderBoardViewModel: LeaderBoardViewModel = viewModel()
+                LeaderboardScreen(
+                    leaderBoardUiState = leaderBoardViewModel.leaderboardUiState,
+                    modifier = Modifier
+                )
             }
             composable(route = DigitalDetoxScreen.Analysis.name) {
                 AnalysisScreen()

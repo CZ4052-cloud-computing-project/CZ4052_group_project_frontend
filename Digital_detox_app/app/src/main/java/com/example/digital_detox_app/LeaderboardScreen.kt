@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.digital_detox_app.LeaderBoardUiState
 import com.example.digital_detox_app.R
 import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
@@ -33,8 +34,21 @@ val sampleLeaderboard = listOf(
 )
 
 @Composable
-fun LeaderboardScreen(leaderboard: List<LeaderboardEntry> = sampleLeaderboard) {
+fun LeaderboardScreen(
+    leaderBoardUiState: LeaderBoardUiState,
+    modifier: Modifier
+) {
+    when (leaderBoardUiState) {
+        is LeaderBoardUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is LeaderBoardUiState.Success -> ResultantScreen(
+            leaderBoardUiState.leaderboardInfo, modifier = modifier.fillMaxWidth()
+        )
+        is LeaderBoardUiState.Error -> ErrorScreen( modifier = modifier.fillMaxSize())
+    }
+}
 
+@Composable
+fun ResultantScreen(leaderboard: String, modifier: Modifier) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,9 +59,10 @@ fun LeaderboardScreen(leaderboard: List<LeaderboardEntry> = sampleLeaderboard) {
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(16.dp)
             )
-            leaderboard.forEach { entry ->
-                LeaderboardEntryItem(entry = entry)
-            }
+            Text(text = leaderboard)
+//            leaderboard.forEach { entry ->
+//                LeaderboardEntryItem(entry = entry)
+//            }
         }
 }
 
@@ -99,11 +114,11 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
-@Composable
-fun PreviewLeaderboardPage() {
-    LeaderboardScreen(leaderboard = sampleLeaderboard)
-}
+//@Preview
+//@Composable
+//fun PreviewLeaderboardPage() {
+//    ResultantScreen()
+//}
 @Preview
 @Composable
 fun ErrorScreenPreview() {
