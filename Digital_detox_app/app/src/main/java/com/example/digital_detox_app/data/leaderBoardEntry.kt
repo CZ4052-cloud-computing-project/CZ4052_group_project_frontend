@@ -1,16 +1,13 @@
 package com.example.digital_detox_app.data
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class leaderBoardEntry (
-    val username: String,
+data class LeaderBoardEntry (
     val position: Int,
+    val username: String,
     val numberOfSessions: Int,
     val totalDurationOfSessions: Int
 )
 
 data class LeaderboardResponse(
     val date: String,
-    val leaderboard: List<leaderBoardEntry>
+    val leaderboard: List<LeaderBoardEntry>
 )
