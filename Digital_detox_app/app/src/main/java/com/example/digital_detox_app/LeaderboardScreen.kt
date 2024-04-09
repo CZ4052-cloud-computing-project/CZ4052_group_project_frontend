@@ -2,7 +2,6 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,19 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.example.digital_detox_app.LeaderBoardUiState
 import com.example.digital_detox_app.R
 import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
-
-// Sample data class representing a leaderboard entry
-data class LeaderboardEntry(val rank: Int, val playerName: String, val score: Int)
-
-// Sample list of leaderboard entries
-val sampleLeaderboard = listOf(
-    LeaderboardEntry(1, "Player1", 100),
-    LeaderboardEntry(2, "Player2", 90),
-    LeaderboardEntry(3, "Player3", 80),
-    LeaderboardEntry(4, "Player4", 70),
-    LeaderboardEntry(5, "Player5", 60),
-    LeaderboardEntry(6, "Player6", 50)
-)
 
 @Composable
 fun LeaderboardScreen(
@@ -66,30 +52,30 @@ fun ResultantScreen(leaderboard: String, modifier: Modifier) {
         }
 }
 
-@Composable
-fun LeaderboardEntryItem(entry: LeaderboardEntry) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        Text(
-            text = entry.rank.toString(),
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.weight(1f)
-        )
-        Text(
-            text = entry.playerName,
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.weight(1f)
-        )
-        Text(
-            text = entry.score.toString(),
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.weight(1f)
-        )
-    }
-}
+//@Composable
+//fun LeaderboardEntryItem(entry: LeaderBoardEntry) {
+//    Row(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(16.dp)
+//    ) {
+//        Text(
+//            text = entry.rank.toString(),
+//            style = MaterialTheme.typography.bodySmall,
+//            modifier = Modifier.weight(1f)
+//        )
+//        Text(
+//            text = entry.playerName,
+//            style = MaterialTheme.typography.bodySmall,
+//            modifier = Modifier.weight(1f)
+//        )
+//        Text(
+//            text = entry.score.toString(),
+//            style = MaterialTheme.typography.bodySmall,
+//            modifier = Modifier.weight(1f)
+//        )
+//    }
+//}
 
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {

@@ -1,7 +1,6 @@
 package com.example.digital_detox_app
 
 import AnalysisScreen
-import LeaderboardEntry
 import LeaderboardScreen
 import MainMenuScreen
 import StartDetoxScreen
@@ -84,10 +83,6 @@ fun DigitalDetoxApp(
     // Get the name of the current screen
     val currentScreen = DigitalDetoxScreen.valueOf(
         backStackEntry?.destination?.route ?: DigitalDetoxScreen.MainMenu.name
-    )
-    val sampleLeaderboard=listOf(
-        LeaderboardEntry(1, "Player1", 100),
-        LeaderboardEntry(2, "Player2", 90),
     )
     Scaffold (
         topBar = {
