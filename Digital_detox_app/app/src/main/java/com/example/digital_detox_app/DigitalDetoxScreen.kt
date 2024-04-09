@@ -1,7 +1,10 @@
 package com.example.digital_detox_app
 
+import AnalysisScreen
+import LeaderboardEntry
 import MainMenuScreen
 import StartDetoxScreen
+import LeaderboardScreen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -23,12 +27,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
 enum class DigitalDetoxScreen(@StringRes val title: Int) {
     MainMenu(title = R.string.app_name),
@@ -70,6 +76,7 @@ fun DigitalDetoxApp(
 //    viewModel: OrderViewModel = viewModel(),
     sessionButtonViewModel: SessionButtonViewModel = viewModel(),
     timerViewModel: TimerViewModel = viewModel(),
+    goalTimeViewModel: GoalTimeViewModel = viewModel(),
     navController: NavHostController = rememberNavController(),
 ) {
     // Get current back stack entry
@@ -77,6 +84,10 @@ fun DigitalDetoxApp(
     // Get the name of the current screen
     val currentScreen = DigitalDetoxScreen.valueOf(
         backStackEntry?.destination?.route ?: DigitalDetoxScreen.MainMenu.name
+    )
+    val sampleLeaderboard=listOf(
+        LeaderboardEntry(1, "Player1", 100),
+        LeaderboardEntry(2, "Player2", 90),
     )
     Scaffold (
         topBar = {
@@ -115,16 +126,34 @@ fun DigitalDetoxApp(
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {
-                // TODO: create Screen for Leaderboard
+                LeaderboardScreen(sampleLeaderboard)
             }
             composable(route = DigitalDetoxScreen.Analysis.name) {
-                // TODO: create Screen for Analysis
+                AnalysisScreen()
             }
             composable(route = DigitalDetoxScreen.SetGoal.name) {
-                // TODO: create Screen for Set Goals
+                SetGoalScreen(
+                    goalTimeViewModel=goalTimeViewModel,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize(Alignment.Center)
+                )
+
+                }
             }
         }
     }
+
+
+@Preview(showBackground = true)
+@Composable
+fun MainMenuScreenPreview() {
+    Digital_detox_appTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            DigitalDetoxApp()
+        }
+    }
 }
-
-
