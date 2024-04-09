@@ -12,4 +12,6 @@
     <string name="setGoalsButton">R.string.set_goal</string>
     <string name="startTimerButton">Start Detox Session</string>
     <string name="endTimerButton">End Detox Session</string>
+    <string name="loading">Loading</string>
+    <string name="loading_failed">Failed to load</string>
 </resources>
