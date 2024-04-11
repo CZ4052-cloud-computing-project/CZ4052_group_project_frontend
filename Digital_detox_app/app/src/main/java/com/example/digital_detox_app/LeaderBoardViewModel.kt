@@ -50,7 +50,7 @@ class LeaderBoardViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[APPLICATION_KEY] as LeaderBoardApplication)
+                val application = (this[APPLICATION_KEY] as DigitalDetoxApplication)
                 val leaderBoardRepository = application.container.leaderboardRepository
                 LeaderBoardViewModel(leaderBoardRepository = leaderBoardRepository)
             }

@@ -9,11 +9,12 @@ interface DigitalDetoxLeaderboardRepository {
 }
 
 class NetworkDigitalDetoxLeaderboardRepository(
-    private val leaderboardAPIservice: DigitalDetoxApiService
+    private val digitalDetoxApi: DigitalDetoxApiService
 ): DigitalDetoxLeaderboardRepository {
     override suspend fun getLeaderboardInfo(): LeaderBoardResponse {
         // TODO: resolve Call requires API level 26 (current min is 24): java.time.LocalDate#now issue
+//        val date = "2024-04-10"
         val date = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
-        return leaderboardAPIservice.getLeaderBoardInfo(date)
+        return digitalDetoxApi.getLeaderBoardInfo(date)
     }
 }
