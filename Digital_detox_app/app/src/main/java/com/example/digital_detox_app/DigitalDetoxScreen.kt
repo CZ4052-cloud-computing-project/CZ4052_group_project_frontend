@@ -74,7 +74,6 @@ fun DigitalDetoxBar (
 fun DigitalDetoxApp(
 //    viewModel: OrderViewModel = viewModel(),
     sessionButtonViewModel: SessionButtonViewModel = viewModel(),
-    timerViewModel: TimerViewModel = viewModel(),
     goalTimeViewModel: GoalTimeViewModel = viewModel(),
     navController: NavHostController = rememberNavController(),
 ) {
@@ -110,6 +109,7 @@ fun DigitalDetoxApp(
                 )
             }
             composable(route = DigitalDetoxScreen.RunningSession.name) {
+                val timerViewModel: TimerViewModel = viewModel(factory = TimerViewModel.Factory)
                 StartDetoxScreen(
                     navController = navController,
                     modifier = Modifier
