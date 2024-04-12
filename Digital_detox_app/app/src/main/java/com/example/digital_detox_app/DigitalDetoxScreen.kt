@@ -83,6 +83,8 @@ fun DigitalDetoxApp(
     val currentScreen = DigitalDetoxScreen.valueOf(
         backStackEntry?.destination?.route ?: DigitalDetoxScreen.MainMenu.name
     )
+    val timerViewModel: TimerViewModel = viewModel(factory = TimerViewModel.Factory)
+
     Scaffold (
         topBar = {
             DigitalDetoxBar(
@@ -109,7 +111,6 @@ fun DigitalDetoxApp(
                 )
             }
             composable(route = DigitalDetoxScreen.RunningSession.name) {
-                val timerViewModel: TimerViewModel = viewModel(factory = TimerViewModel.Factory)
                 StartDetoxScreen(
                     navController = navController,
                     modifier = Modifier
