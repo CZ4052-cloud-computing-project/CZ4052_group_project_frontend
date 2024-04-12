@@ -74,7 +74,6 @@ fun DigitalDetoxBar (
 fun DigitalDetoxApp(
 //    viewModel: OrderViewModel = viewModel(),
     sessionButtonViewModel: SessionButtonViewModel = viewModel(),
-    timerViewModel: TimerViewModel = viewModel(),
     goalTimeViewModel: GoalTimeViewModel = viewModel(),
     navController: NavHostController = rememberNavController(),
 ) {
@@ -84,6 +83,8 @@ fun DigitalDetoxApp(
     val currentScreen = DigitalDetoxScreen.valueOf(
         backStackEntry?.destination?.route ?: DigitalDetoxScreen.MainMenu.name
     )
+    val timerViewModel: TimerViewModel = viewModel(factory = TimerViewModel.Factory)
+
     Scaffold (
         topBar = {
             DigitalDetoxBar(
@@ -116,7 +117,8 @@ fun DigitalDetoxApp(
                         .fillMaxSize()
                         .wrapContentSize(Alignment.Center),
                     sessionButtonViewModel = sessionButtonViewModel,
-                    timerViewModel = timerViewModel
+                    timerViewModel = timerViewModel,
+                    timerUiState = timerViewModel.timerUiState
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {
