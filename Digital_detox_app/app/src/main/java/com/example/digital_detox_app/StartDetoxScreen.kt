@@ -10,6 +10,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -40,6 +41,14 @@ fun StartDetoxScreen(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            UsernameTextField(timerViewModel)
+        }
+        Spacer(modifier = Modifier.height(16.dp))
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -112,6 +121,18 @@ fun TimerScreen(
         Text(text = timerValue.formatTime(), fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
     }
+}
+
+@Composable
+fun UsernameTextField(
+    timerViewModel: TimerViewModel
+) {
+    val username by timerViewModel.username.collectAsState()
+    TextField(
+        value = username,
+        onValueChange = { timerViewModel.username.value = it },
+        label = { Text("Username") }
+    )
 }
 
 @Preview(showBackground = true)

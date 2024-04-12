@@ -34,6 +34,7 @@ class TimerViewModel(
     private val _timer = MutableStateFlow(0L)
     val timer = _timer.asStateFlow()
     private var timerJob: Job? = null
+    var username = MutableStateFlow("")
 
     var timerUiState: TimerUiState by mutableStateOf(TimerUiState.Initial)
         private set
@@ -57,7 +58,7 @@ class TimerViewModel(
         var timerInfo = TimerInfo(
             // TODO: resolve Call requires API level 26 (current min is 24): java.time.LocalDate#now issue
             date = LocalDate.now().format(DateTimeFormatter.ISO_DATE),
-            username = "johnny_boy",
+            username = username.value,
             duration = _timer.value.toInt()
         )
         _timer.value = 0
