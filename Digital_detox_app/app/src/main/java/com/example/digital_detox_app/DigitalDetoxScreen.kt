@@ -117,7 +117,8 @@ fun DigitalDetoxApp(
                         .fillMaxSize()
                         .wrapContentSize(Alignment.Center),
                     sessionButtonViewModel = sessionButtonViewModel,
-                    timerViewModel = timerViewModel
+                    timerViewModel = timerViewModel,
+                    timerUiState = timerViewModel.timerUiState
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {

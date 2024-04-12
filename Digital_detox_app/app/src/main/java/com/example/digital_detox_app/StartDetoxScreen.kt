@@ -24,6 +24,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.digital_detox_app.R
 import com.example.digital_detox_app.SessionButtonViewModel
+import com.example.digital_detox_app.TimerUiState
 import com.example.digital_detox_app.TimerViewModel
 import com.example.digital_detox_app.ui.theme.Digital_detox_appTheme
 
@@ -33,6 +34,7 @@ fun StartDetoxScreen(
     navController: NavHostController = rememberNavController(),
     sessionButtonViewModel: SessionButtonViewModel = viewModel(),
     timerViewModel: TimerViewModel = viewModel(),
+    timerUiState: TimerUiState
 ) {
     Column(
         modifier = modifier,
@@ -61,8 +63,29 @@ fun StartDetoxScreen(
                 Text(text = if (isTimerRunning) stringResource(id = R.string.endTimerButton) else stringResource(id = R.string.startTimerButton))
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            UploadResults(timerUiState)
+        }
     }
 }
+
+@Composable
+fun UploadResults(
+    timerUiState: TimerUiState,
+) {
+    when (timerUiState) {
+        is TimerUiState.Initial -> Text("")
+        is TimerUiState.Loading -> Text("loading...")
+        is TimerUiState.Success -> Text("Upload Successful")
+        is TimerUiState.Error -> Text("Upload failed")
+    }
+}
+
 
 @Composable
 fun TimerScreenContent(timerViewModel: TimerViewModel) {
@@ -99,7 +122,13 @@ fun StartDetoxScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            StartDetoxScreen()
+            val timerViewModel: TimerViewModel = viewModel(factory = TimerViewModel.Factory)
+            val sessionButtonViewModel: SessionButtonViewModel = viewModel()
+            StartDetoxScreen(
+                sessionButtonViewModel = sessionButtonViewModel,
+                timerViewModel = timerViewModel,
+                timerUiState = timerViewModel.timerUiState
+            )
         }
     }
 }

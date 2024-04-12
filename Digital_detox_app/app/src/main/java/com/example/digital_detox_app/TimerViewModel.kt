@@ -25,6 +25,7 @@ sealed interface TimerUiState {
     data class Success(val timerInfo: Response<Unit>) : TimerUiState
     object Error : TimerUiState
     object Loading : TimerUiState
+    object Initial : TimerUiState
 }
 
 class TimerViewModel(
@@ -34,10 +35,11 @@ class TimerViewModel(
     val timer = _timer.asStateFlow()
     private var timerJob: Job? = null
 
-    var timerUiState: TimerUiState by mutableStateOf(TimerUiState.Loading)
+    var timerUiState: TimerUiState by mutableStateOf(TimerUiState.Initial)
         private set
 
     fun startTimer() {
+        timerUiState = TimerUiState.Initial
         timerJob?.cancel()
         timerJob = viewModelScope.launch {
             while (true) {
