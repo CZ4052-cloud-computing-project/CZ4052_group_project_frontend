@@ -84,6 +84,7 @@ fun DigitalDetoxApp(
         backStackEntry?.destination?.route ?: DigitalDetoxScreen.MainMenu.name
     )
     val timerViewModel: TimerViewModel = viewModel(factory = TimerViewModel.Factory)
+    val userProfileViewModel: ProfileViewModel = viewModel(factory = ProfileViewModel.Factory)
 
     Scaffold (
         topBar = {
@@ -93,7 +94,6 @@ fun DigitalDetoxApp(
                 navigateUp = { navController.navigateUp() })
         }
     ) { innerPadding ->
-//        val uiState by viewModel.uiState.collectAsState()
         NavHost(
             navController = navController,
             startDestination = DigitalDetoxScreen.MainMenu.name,
@@ -118,7 +118,8 @@ fun DigitalDetoxApp(
                         .wrapContentSize(Alignment.Center),
                     sessionButtonViewModel = sessionButtonViewModel,
                     timerViewModel = timerViewModel,
-                    timerUiState = timerViewModel.timerUiState
+                    timerUiState = timerViewModel.timerUiState,
+                    userProfileViewModel = userProfileViewModel
                 )
             }
             composable(route = DigitalDetoxScreen.LeaderBoard.name) {
@@ -129,7 +130,11 @@ fun DigitalDetoxApp(
                 )
             }
             composable(route = DigitalDetoxScreen.Analysis.name) {
-                AnalysisScreen()
+                val statisticsViewModel: StatisticsViewModel = viewModel(factory = StatisticsViewModel.Factory)
+                AnalysisScreen(
+                    statisticsViewModel = statisticsViewModel,
+                    modifier = Modifier
+                )
             }
             composable(route = DigitalDetoxScreen.SetGoal.name) {
                 SetGoalScreen(
