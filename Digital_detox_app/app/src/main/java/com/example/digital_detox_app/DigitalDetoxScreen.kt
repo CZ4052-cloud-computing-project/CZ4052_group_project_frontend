@@ -132,6 +132,7 @@ fun DigitalDetoxApp(
             composable(route = DigitalDetoxScreen.Analysis.name) {
                 val statisticsViewModel: StatisticsViewModel = viewModel(factory = StatisticsViewModel.Factory)
                 AnalysisScreen(
+                    goalTimeViewModel = goalTimeViewModel,
                     statisticsViewModel = statisticsViewModel,
                     modifier = Modifier
                 )
