@@ -98,12 +98,11 @@ fun BarGraph(dataPoints: List<Pair<String, Int>>) {
         horizontalArrangement = Arrangement.SpaceBetween
 
     ) {
-//
-//        VerticalAxis(maxValue = maxValue, maxHeight = maxHeight)
-//        Spacer(modifier = Modifier.width(30.dp))
-        dataPoints.forEach { (detoxTime) ->
+
+        dataPoints.forEach { (day, detoxTime) ->
 
                 Box(
+
                     modifier = Modifier
                         .size(barWidth, (detoxTime.toFloat() / maxValue.toFloat()) * maxHeight)
                         .background(Color.Blue)
@@ -176,7 +175,8 @@ fun ProgressBar(
 ) {
     when (statisticsUiState) {
         is StatisticsUiState.Loading -> Text("Loading...")
-        is StatisticsUiState.Success -> {
+        is StatisticsUiState.Success ->
+        {
             val goalTime by goalTimeViewModel.goalTime.collectAsState()
             val currDuration = statisticsUiState.statisticInfo.last().totalDurationOfSessions.toLong()
 
@@ -246,7 +246,8 @@ fun WeeklyProgress(
 ) {
     when (statisticsUiState) {
         is StatisticsUiState.Loading -> Text("Loading...")
-        is StatisticsUiState.Success -> {
+        is StatisticsUiState.Success ->
+        {
 
             Column {
                 Text(
@@ -276,7 +277,7 @@ fun WeeklyProgress(
                 val paddedDateEntries = allDates.map { date ->
                     date.format(formatter) to (dateDurationMap[date] ?: 0)
                 }
-                // Optional to get numbered instead of dates x axis
+//                 Optional to get numbered instead of dates x axis
 //                val numberedEntries = paddedDateEntries.mapIndexed { index, (date, duration) ->
 //                    (index + 1).toString() to duration
 //                }
