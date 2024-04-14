@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.digital_detox_app.LeaderBoardUiState
@@ -44,38 +46,78 @@ fun ResultantScreen(leaderboard: LeaderBoardResponse, modifier: Modifier) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Leaderboard",
+                text = "Daily Leaderboard",
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(16.dp)
             )
+            LeaderboardLabels()
 //            Text(text = leaderboard)
             leaderboard.leaderboard.forEach { entry ->
-                LeaderboardEntryItem(entry = entry)
+                Card (modifier=modifier.padding(8.dp)){
+
+                    LeaderboardEntryItem(entry = entry)
+                }
             }
         }
 }
 
 @Composable
+fun LeaderboardLabels() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+
+        ) {
+        Text(
+            text = "Rank",
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            text = "Username",
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = "Detox Duration",
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center
+        )
+    }
+}
+@Composable
 fun LeaderboardEntryItem(entry: LeaderBoardEntry) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+
     ) {
         Text(
             text = entry.position.toString(),
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.weight(1f)
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center,
         )
         Text(
             text = entry.username,
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.weight(1f)
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center
         )
         Text(
             text = entry.totalDurationOfSessions.toString(),
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.weight(1f)
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center
         )
     }
 }
