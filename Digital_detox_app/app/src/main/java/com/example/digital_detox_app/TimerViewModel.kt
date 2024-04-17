@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.digital_detox_app.data.DigitalDetoxTimerRepository
+import com.example.digital_detox_app.data.ProfileDataSource
 import com.example.digital_detox_app.data.TimerInfo
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -29,12 +30,12 @@ sealed interface TimerUiState {
 }
 
 class TimerViewModel(
-    private val timerRepository: DigitalDetoxTimerRepository
+    private val timerRepository: DigitalDetoxTimerRepository,
+    private val userProfileDataSource: ProfileDataSource
 ) : ViewModel() {
     private val _timer = MutableStateFlow(0L)
     val timer = _timer.asStateFlow()
     private var timerJob: Job? = null
-    var username = MutableStateFlow("")
 
     var timerUiState: TimerUiState by mutableStateOf(TimerUiState.Initial)
         private set
@@ -58,7 +59,7 @@ class TimerViewModel(
         var timerInfo = TimerInfo(
             // TODO: resolve Call requires API level 26 (current min is 24): java.time.LocalDate#now issue
             date = LocalDate.now().format(DateTimeFormatter.ISO_DATE),
-            username = username.value,
+            username = userProfileDataSource.getUserProfile(),
             duration = _timer.value.toInt()
         )
         _timer.value = 0
@@ -89,7 +90,8 @@ class TimerViewModel(
             initializer {
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as DigitalDetoxApplication)
                 val timerRepository = application.container.timerRepository
-                TimerViewModel(timerRepository = timerRepository)
+                val userProfileDataSource = application.container.userProfileDataSource
+                TimerViewModel(timerRepository = timerRepository, userProfileDataSource = userProfileDataSource)
             }
         }
     }

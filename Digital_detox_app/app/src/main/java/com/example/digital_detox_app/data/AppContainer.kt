@@ -13,6 +13,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 interface AppContainer {
     val leaderboardRepository: DigitalDetoxLeaderboardRepository
     val timerRepository: DigitalDetoxTimerRepository
+    val statisticsRepository: DigitalDetoxStatisticsRepository
+    val userProfileDataSource: ProfileDataSource
 }
 
 class DefaultAppContainer: AppContainer {
@@ -48,4 +50,11 @@ class DefaultAppContainer: AppContainer {
         NetworkDigitalDetoxTimerRepository(retrofitService)
     }
 
+    override val statisticsRepository: DigitalDetoxStatisticsRepository by lazy {
+        NetworkDigitalDetoxStatisticsRepository(retrofitService)
+    }
+
+    override val userProfileDataSource: ProfileDataSource by lazy {
+        ProfileDataSource()
+    }
 }
