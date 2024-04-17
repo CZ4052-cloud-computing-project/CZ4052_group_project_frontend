@@ -2,7 +2,7 @@
 
 Digital Detox As a Service
 
-![dd_logo](https://github.com/CZ4052-cloud-computing-project/CZ4052_group_project_frontend/assets/70202288/17462c17-8810-4a36-b0bc-dd43cdae9ed1)
+<img src="https://github.com/CZ4052-cloud-computing-project/CZ4052_group_project_frontend/assets/70202288/17462c17-8810-4a36-b0bc-dd43cdae9ed1" width="224">
 
 
 A short demo of our digital detox application
